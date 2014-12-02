@@ -1,4 +1,9 @@
-= Footprint - Rack Application Logging Tools
+= Footprint (Beta)
+Rack Application Logging Tools
+
+== Build status
+
+{<img src="https://travis-ci.org/ipuiu/footprint-log.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/ipuiu/footprint-log]
 
 == What is "Footprint" ?
 
