@@ -8,5 +8,4 @@ group :development, :test do
   gem 'rspec'
   gem 'rack'
   gem 'jeweler'
-  gem 'codeclimate-test-reporter'
 end
