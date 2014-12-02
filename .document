@@ -1,0 +1,4 @@
+lib/**/*.rb
+- 
+features/**/*.feature
+LICENSE.txt

@@ -1,0 +1,107 @@
+= Footprint - Rack Application Logging Tools
+
+== What is "Footprint" ?
+
+Footprint was started by the need to have a simple and smart way to deal with the logs.
+
+It is composed of:
+
+    require 'footprint/log' # some custom loggers.
+    require 'footprint/middleware' # middleware used to decorate Rack applications.
+
+== How to use it ?
+
+First you should add the gem to your Gemfile:
+
+    gem 'footprint-log'
+
+=== Basic Usage
+
+Let's say that we don't care about what logger we use, and we just wish a logger method in our app that acts like a logger instance.
+
+In that case we can do something like this:
+
+    require 'sinatra'
+    require 'footprint/middleware'
+
+    class MyApp < Sinatra
+
+        use Footprint::Middleware
+
+        get '/' do
+            logger.info 'I can use logger method inside my route!'
+        end
+
+    end
+
+=== Advanced Usage
+
+Let's say that we care about what logger we use, and we also wish a logger method in our app that acts like a logger instance.
+
+Let's assume we want to use a instance of the Logger class, initialized with log_device as STDOUT.
+
+In that case we can do something like this:
+
+    require 'sinatra'
+    require 'footprint/middleware'
+
+    class MyApp < Sinatra
+
+        use Footprint::Middleware do
+            set Logger, STDOUT
+        end
+
+        get '/' do
+            logger.info 'I can use a instance of Logger class, initialized with STDOUT option by calling the logger method inside my route!'
+        end
+
+    end
+
+
+Let's assume we want to use the following custom Logger class, initialized with log_device as STDOUT and level as 5.
+
+    class MyAwesomeLogger
+
+        attr_accesor :log_device, :level
+
+        def initialize log_device, level
+           @log_device = log_device
+           @level = level
+        end
+
+    end
+
+
+In that case we can do something like this:
+
+    require 'sinatra'
+    require 'footprint/middleware'
+
+    class MyApp < Sinatra
+
+        use Footprint::Middleware do
+            set MyAwesomeLogger, [STDOUT,5]
+        end
+
+        get '/' do
+            logger.info 'I can use a instance of MyAwesomeLogger class, initialized with STDOUT, 5 option by calling the logger method inside my route!'
+        end
+
+    end
+
+
+== Contributing to footprint
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
+* Fork the project.
+* Start a feature/bugfix branch.
+* Commit and push until you are happy with your contribution.
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Copyright
+
+Copyright (c) 2014 Puiu Ionut. See LICENSE.txt for
+further details.
+
