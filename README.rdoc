@@ -1,9 +1,10 @@
 = Footprint (Beta)
 Rack Application Logging Tools
 
-== Build status
-
 {<img src="https://travis-ci.org/ipuiu/footprint-log.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/ipuiu/footprint-log]
+{<img src="https://gemnasium.com/ipuiu/footprint-log.svg" alt="Dependency Status" />}[https://gemnasium.com/ipuiu/footprint-log]
+{<img src="https://codeclimate.com/github/ipuiu/footprint-log/badges/gpa.svg" />}[https://codeclimate.com/github/ipuiu/footprint-log]
+{<img src="http://inch-ci.org/github/ipuiu/footprint-log.svg?branch=master" alt="Inline docs" />}[http://inch-ci.org/github/ipuiu/footprint-log]
 
 == What is "Footprint" ?
 
