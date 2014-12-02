@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'simplecov'
 SimpleCov.command_name 'test:spec'
 
