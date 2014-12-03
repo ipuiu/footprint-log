@@ -6,7 +6,6 @@ module Footprint
   #
   # Class that is actually the Middleware we use to decorate
   # the application with loggers, taking advantage of the @env.
-  #
   class Middleware
 
     # @app = the instance of the application that uses this middleware.
