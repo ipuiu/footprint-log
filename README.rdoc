@@ -66,7 +66,7 @@ In that case we can do something like this:
     end
 
 
-Let's assume we want to use the following custom Logger class, initialized with log_device as STDOUT and level as 5.
+Let's assume we want to use the following custom Logger class, initialized with log_device as STDOUT and level as 1 (that is INFO level).
 
     class MyAwesomeLogger < Logger
 
