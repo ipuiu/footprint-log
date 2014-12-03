@@ -39,7 +39,7 @@ describe Footprint::Middleware do
     let(:app) { MockRackApp.new }
     let(:custom_logger_config) {
       Proc.new do
-        set Footprint::Log::OutFile, STDOUT
+        set Footprint::Log::OutFile, STDOUT, 0
       end
     }
     let(:stack) { Footprint::Middleware.new(app, &custom_logger_config) }

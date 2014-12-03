@@ -26,8 +26,8 @@ module Footprint
       @app.call env
     end
 
-    def set clazz, options=nil
-      @logger = clazz.send(:new, options)
+    def set clazz, *args
+      @logger = clazz.send(:new, *args)
     end
 
   end
