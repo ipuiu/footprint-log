@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Puiu Ionut"]
-  s.date = "2014-12-02"
+  s.date = "2014-12-03"
   s.description = "Provides functionality to decorate Rack applications like Sinatra with loggers."
   s.email = "ii.puiuionut@gmail.com"
   s.extra_rdoc_files = [
@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<rack>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<coveralls>, [">= 0"])
     else
       s.add_dependency(%q<gelf>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
@@ -49,6 +50,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<rack>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<coveralls>, [">= 0"])
     end
   else
     s.add_dependency(%q<gelf>, [">= 0"])
@@ -57,6 +59,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<rack>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<coveralls>, [">= 0"])
   end
 end
 
