@@ -1,9 +1,9 @@
+#
+# Module that wraps the Footprint gem content.
+#
+module Footprint; end
+
 require_relative 'footprint/log'
-
-module Footprint
-
-  attr_accessor :logger
-
-end
+require_relative 'footprint/middleware'
 
 
