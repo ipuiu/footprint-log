@@ -68,13 +68,11 @@ In that case we can do something like this:
 
 Let's assume we want to use the following custom Logger class, initialized with log_device as STDOUT and level as 5.
 
-    class MyAwesomeLogger
+    class MyAwesomeLogger < Logger
 
-        attr_accesor :log_device, :level
-
-        def initialize log_device, level
-           @log_device = log_device
-           @level = level
+        def initialize logdev, level
+            super logdev, shift_age = 0, shift_size = 1048576
+            @level = level
         end
 
     end
@@ -88,17 +86,17 @@ In that case we can do something like this:
     class MyApp < Sinatra
 
         use Footprint::Middleware do
-            set MyAwesomeLogger, STDOUT, 5
+            set MyAwesomeLogger, STDOUT, 1
         end
 
         get '/' do
-            logger.info 'I can use a instance of MyAwesomeLogger class, initialized with STDOUT, 5 option by calling the logger method inside my route!'
+            logger.info 'I can use a instance of MyAwesomeLogger class, initialized with STDOUT, 1 option by calling the logger method inside my route!'
         end
 
     end
 
 
-== Contributing to footprint
+== Contributing to Footprint
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
