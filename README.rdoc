@@ -1,6 +1,7 @@
 = Footprint (Beta)
 Rack Application Logging Tools
 
+{<img src="https://badge.fury.io/rb/footprint-log.svg" alt="Gem Version" />}[http://badge.fury.io/rb/footprint-log]
 {<img src="https://travis-ci.org/ipuiu/footprint-log.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/ipuiu/footprint-log]
 {<img src="https://gemnasium.com/ipuiu/footprint-log.svg" alt="Dependency Status" />}[https://gemnasium.com/ipuiu/footprint-log]
 {<img src="https://codeclimate.com/github/ipuiu/footprint-log/badges/gpa.svg" />}[https://codeclimate.com/github/ipuiu/footprint-log]
