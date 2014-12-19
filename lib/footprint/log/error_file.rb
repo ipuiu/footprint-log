@@ -11,7 +11,24 @@ module Footprint
     # write in log.
     class ErrorFile < Basic
 
+      #
+      # === Synopsis
+      #
+      #   write 'My dummy error log message'
+      #
+      # === Args
+      #
+      # +message+::
+      #   The log message.  A String or Exception.
+      #
+      # === Return
+      #
+      # +true+ if successful, +false+ otherwise.
+      #
+      # === Description
+      #
       # Logs the message on error level on logger.
+      #
       def write(message)
         error message
       end

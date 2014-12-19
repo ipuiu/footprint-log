@@ -15,6 +15,27 @@ module Footprint
     attr_accessor :logger
 
 
+
+    #
+    # === Synopsis
+    #
+    # Basic usage:
+    #   use Footprint::Middleware
+    #
+    # Advanced usage:
+    #   use Footprint::Middleware do
+    #     set Logger, STDOUT
+    #   end
+    #
+    # === Args
+    #
+    # +app+::
+    #   Rack application instance.
+    # +block+::
+    #   Optional block, used to instance_eval (defaults to nil)
+    #
+    # === Description
+    #
     # Initialize the Middleware with the +app+ that uses this
     # Middleware and an optional +block+.
     #
@@ -25,9 +46,6 @@ module Footprint
     #
     # If any +block+ is given, a instance_eval is called.
     #
-    # Params:
-    # +app+:: Rack application instance.
-    # +block+:: Optional block, used to instance_eval (defaults to nil)
     def initialize(app, &block)
 
       @app = app
@@ -42,31 +60,44 @@ module Footprint
       self.instance_eval &block if block
     end
 
-
+    #
+    # === Args
+    #
+    # +env+::
+    #   Rack request environment.
+    #
+    # === Description
+    #
     # The current instance of the logger is set on env[:footprint_logger]
     # and the app is called further with the enriched env.
     #
-    # Params:
-    # +env+:: Rack request environment.
     def call(env)
       env[:footprint_logger] = @logger
       @app.call env
     end
 
+    #
+    # === Synopsis
+    #
+    # Basic usage:
+    #   set Logger, STDOUT
+    #
+    # === Args
+    #
+    # +clazz+::
+    #   Any Logger class that has the default Logger methods.
+    #
+    # +args+::
+    #   Optional array of arguments passed to the Logger class for initialize (defaults to nil)
+    #
+    # === Description
+    #
     # Initialize the current instance of the logger with
     # a new instance of the class given as parameter.
     #
     # The initialization of the class given is done using
     # the second parameter.
     #
-    # Params:
-    # +clazz+:: Any Logger class that has the default Logger methods.
-    # +args+:: Optional array of arguments passed to the Logger class for initialize (defaults to nil)
-    #
-    # Example:
-    #   set Logger, STDOUT
-    # Will result in:
-    #   Logger.new STDOUT
     def set clazz, *args
       @logger = clazz.send(:new, *args)
     end
