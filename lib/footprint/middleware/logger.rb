@@ -80,7 +80,7 @@ module Footprint
     # === Synopsis
     #
     # Basic usage:
-    #   set Logger, STDOUT
+    #   set Logger, STDOUT # => logger
     #
     # === Args
     #
@@ -89,6 +89,10 @@ module Footprint
     #
     # +args+::
     #   Optional array of arguments passed to the Logger class for initialize (defaults to nil)
+    #
+    # === Return
+    #
+    # +logger+
     #
     # === Description
     #
