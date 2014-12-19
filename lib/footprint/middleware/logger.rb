@@ -19,13 +19,19 @@ module Footprint
     #
     # === Synopsis
     #
-    # Basic usage:
+    # Basic Middleware usage:
+    #
     #   use Footprint::Middleware
     #
-    # Advanced usage:
+    # Advanced Middleware usage:
+    #
     #   use Footprint::Middleware do
     #     set Logger, STDOUT
     #   end
+    #
+    # Clazz init:
+    #
+    #   Footprint::Middleware.new app # => #<Footprint::Middleware>
     #
     # === Args
     #
@@ -61,10 +67,18 @@ module Footprint
     end
 
     #
+    # === Synopsis
+    #
+    #   Footprint:Middleware.call env # => env
+    #
     # === Args
     #
     # +env+::
     #   Rack request environment.
+    #
+    # === Return
+    #
+    # +env+ returned always.
     #
     # === Description
     #
@@ -80,7 +94,8 @@ module Footprint
     # === Synopsis
     #
     # Basic usage:
-    #   set Logger, STDOUT # => logger
+    #
+    #   Footprint.Middleware.set Logger, STDOUT # => logger
     #
     # === Args
     #
@@ -92,7 +107,7 @@ module Footprint
     #
     # === Return
     #
-    # +logger+
+    # +logger+ returned always.
     #
     # === Description
     #
