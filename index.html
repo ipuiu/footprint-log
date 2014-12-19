@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Footprint by ipuiu</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Footprint</h1>
+        <h2>Rack Application Logging Tools</h2>
+        <a href="https://github.com/ipuiu/footprint-log" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="footprint" class="anchor" href="#footprint" aria-hidden="true"><span class="octicon octicon-link"></span></a>Footprint</h1>
+
+<p>Rack Application Logging Tools</p>
+
+<p><img src="https://badge.fury.io/rb/footprint-log.svg" alt="Gem Version">
+<img src="https://travis-ci.org/ipuiu/footprint-log.svg?branch=master" alt="Build Status">
+<img src="https://gemnasium.com/ipuiu/footprint-log.svg" alt="Dependency Status">
+<img src="https://codeclimate.com/github/ipuiu/footprint-log/badges/gpa.svg">
+<img src="https://coveralls.io/repos/ipuiu/footprint-log/badge.png?branch=master" alt="Coverage Status">
+<img src="http://inch-ci.org/github/ipuiu/footprint-log.svg?branch=master" alt="Inline docs"></p>
+
+<h2>
+<a id="what-is-footprint-" class="anchor" href="#what-is-footprint-" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is "Footprint" ?</h2>
+
+<p>Footprint was started by the need to have a simple and smart way to deal with the logs.</p>
+
+<p>It is composed of:</p>
+
+<pre><code>require 'footprint/log' # some custom loggers.
+require 'footprint/middleware' # middleware used to decorate Rack applications.
+</code></pre>
+
+<h2>
+<a id="how-to-use-it-" class="anchor" href="#how-to-use-it-" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use it ?</h2>
+
+<p>First you should add the gem to your Gemfile:</p>
+
+<pre><code>gem 'footprint-log'
+</code></pre>
+
+<h3>
+<a id="basic-usage-" class="anchor" href="#basic-usage-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Usage </h3>
+
+<p>Let's say that we don't care about what logger we use, and we just wish a logger method in our app that acts like a logger instance.</p>
+
+<p>In that case we can do something like this:</p>
+
+<pre><code>require 'sinatra'
+require 'footprint/middleware'
+
+class MyApp &lt; Sinatra
+
+    use Footprint::Middleware
+
+    get '/' do
+        logger.info 'I can use logger method inside my route!'
+    end
+
+end
+</code></pre>
+
+<h3>
+<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Usage</h3>
+
+<p>Let's say that we care about what logger we use, and we also wish a logger method in our app that acts like a logger instance.</p>
+
+<p>Let's assume we want to use a instance of the Logger class, initialized with log_device as STDOUT.</p>
+
+<p>In that case we can do something like this:</p>
+
+<pre><code>require 'sinatra'
+require 'footprint/middleware'
+
+class MyApp &lt; Sinatra
+
+    use Footprint::Middleware do
+        set Logger, STDOUT
+    end
+
+    get '/' do
+        logger.info 'I can use a instance of Logger class, initialized with STDOUT option by calling the logger method inside my route!'
+    end
+
+end
+</code></pre>
+
+<p>Let's assume we want to use the following custom Logger class, initialized with log_device as STDOUT and level as 1 (that is INFO level).</p>
+
+<pre><code>class MyAwesomeLogger &lt; Logger
+
+    def initialize logdev, level
+        super logdev, shift_age = 0, shift_size = 1048576
+        @level = level
+    end
+
+end
+</code></pre>
+
+<p>In that case we can do something like this:</p>
+
+<pre><code>require 'sinatra'
+require 'footprint/middleware'
+
+class MyApp &lt; Sinatra
+
+    use Footprint::Middleware do
+        set MyAwesomeLogger, STDOUT, 1
+    end
+
+    get '/' do
+        logger.info 'I can use a instance of MyAwesomeLogger class, initialized with STDOUT, 1 option by calling the logger method inside my route!'
+    end
+
+end
+</code></pre>
+
+<h2>
+<a id="contributing-to-footprint" class="anchor" href="#contributing-to-footprint" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing to Footprint</h2>
+ 
+
+<ul>
+<li>Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.</li>
+<li>Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.</li>
+<li>Fork the project.</li>
+<li>Start a feature/bugfix branch.</li>
+<li>Commit and push until you are happy with your contribution.</li>
+<li>Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.</li>
+<li>Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.</li>
+</ul>
+
+<h2>
+<a id="copyright" class="anchor" href="#copyright" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright</h2>
+
+<p>Copyright (c) 2014 Puiu Ionut. See LICENSE.txt for
+further details.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/ipuiu/footprint-log/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/ipuiu/footprint-log/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/ipuiu/footprint-log"></a> is maintained by <a href="https://github.com/ipuiu">ipuiu</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
