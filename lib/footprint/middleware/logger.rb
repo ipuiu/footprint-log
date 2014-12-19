@@ -8,19 +8,26 @@ module Footprint
   # the application with loggers, taking advantage of the @env.
   class Middleware
 
-    # @app = the instance of the application that uses this middleware.
-    # @logger = the instance of the logger used to decorate the Rack application.
-    attr_accessor :app, :logger
+    # The instance of the Rack +app+ that uses this middleware.
+    attr_accessor :app
 
-    # Initialize the Middleware with the app that uses this
-    # Middleware and an optional block.
+    # The instance of the +logger+ used to decorate the Rack application.
+    attr_accessor :logger
+
+
+    # Initialize the Middleware with the +app+ that uses this
+    # Middleware and an optional +block+.
     #
     # Sets as the default logger a Footprint::Log::Basic on STDOUT.
     #
-    # Decorate the given app with a new method called logger,
+    # Decorate the given +app+ with a new method called logger,
     # that will return the instance of the logger from the env.
     #
-    # If any block is given, a instance_eval is called.
+    # If any +block+ is given, a instance_eval is called.
+    #
+    # Params:
+    # +app+:: Rack application instance.
+    # +block+:: Optional block, used to instance_eval (defaults to nil)
     def initialize(app, &block)
 
       @app = app
@@ -38,6 +45,9 @@ module Footprint
 
     # The current instance of the logger is set on env[:footprint_logger]
     # and the app is called further with the enriched env.
+    #
+    # Params:
+    # +env+:: Rack request environment.
     def call(env)
       env[:footprint_logger] = @logger
       @app.call env
@@ -48,6 +58,15 @@ module Footprint
     #
     # The initialization of the class given is done using
     # the second parameter.
+    #
+    # Params:
+    # +clazz+:: Any Logger class that has the default Logger methods.
+    # +args+:: Optional array of arguments passed to the Logger class for initialize (defaults to nil)
+    #
+    # Example:
+    #   set Logger, STDOUT
+    # Will result in:
+    #   Logger.new STDOUT
     def set clazz, *args
       @logger = clazz.send(:new, *args)
     end
