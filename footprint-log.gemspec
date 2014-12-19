@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "footprint-log"
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Puiu Ionut"]
-  s.date = "2014-12-03"
+  s.date = "2014-12-19"
   s.description = "Provides functionality to decorate Rack applications like Sinatra with loggers."
   s.email = "ii.puiuionut@gmail.com"
   s.extra_rdoc_files = [
